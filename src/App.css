@@ -1,0 +1,55 @@
+.App {
+  /* text-align: center; */
+  /* background-image: url('/img/camo.jpg') */
+  background-color: #E6D9C1;
+}
+
+html{
+  background-color: #E6D9C1;
+}
+#textarea{
+  resize: none;
+  border-radius: 2px;
+  border: none;
+}
+
+#title{
+  border: none;
+  border-radius: 2px;
+}
+
+#titleLink{
+  text-decoration: none;
+  color: #6F6B29;
+}
+#wordCloud{
+  background-color: white;
+}
+#signupBox{
+  background-color: #F7FBD5;
+}
+#myDiaryBox{
+  background-color: transparent !important;
+}
+/* .App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+} */
+
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} */
+
+/* 
+.diary {
+  border-radius: 10px;
+  border-style: groove;
+border-color:pink;
+} */
