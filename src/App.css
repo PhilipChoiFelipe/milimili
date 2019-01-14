@@ -1,7 +1,46 @@
+@keyframes blinker {
+  50% { opacity: 0.0; }
+}
 .App {
   /* text-align: center; */
   /* background-image: url('/img/camo.jpg') */
   background-color: #E6D9C1;
+}
+
+#websiteTitle{
+  margin-top: 15%;
+}
+/* The typing effect */
+
+#diaryTitle{
+  font-size:1.5rem;
+}
+
+#oneCommentIn{
+  border-radius: 5px;
+  margin-bottom: 0;
+  padding:0;
+}
+
+#commentContainerOwn{
+  margin-left: 45%;
+  width: 40%;
+}
+
+#commentContainerOther{
+  margin-left: 15%;
+  width: 40%;
+}
+
+#ownComment{
+  border-radius: 5px;
+}
+#oneComment{
+  border-radius: 5px;
+}
+
+#card {
+  width: 20rem;
 }
 
 html{
@@ -11,22 +50,31 @@ html{
   resize: none;
   border-radius: 2px;
   border: none;
+  display:inline;
 }
 
 #title{
   border: none;
   border-radius: 2px;
+  /* font-family: "Oswald", sans-serif; */
 }
 
 #titleLink{
   text-decoration: none;
   color: #6F6B29;
+  font-family: "Oswald", sans-serif;
+
 }
 #wordCloud{
   background-color: white;
+  border-radius: 10px;
 }
 #signupBox{
-  background-color: #F7FBD5;
+  background-color: #E3D89A;
+}
+
+#signupButton{
+  /* background-color: #DADEBC; */
 }
 #myDiaryBox{
   background-color: transparent !important;

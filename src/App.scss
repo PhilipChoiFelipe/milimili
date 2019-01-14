@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+
+// $mauve: rgb(102, 35, 69);
+// $red: rgb(102, 21, 16);
+// $blue: rgb(39, 110, 151);
+// $yellow: rgb(175, 133, 45);
+$mauve: rgb(96,68,57);
+$red: rgb(158,154,117);
+$blue: rgb(28,34,46);
+$yellow: rgb(65,83,59);
+
+// #titleLink{
+
+// }
+
+#websiteTitle span {
+    display: inline-block;
+    margin-left: -15px;
+    font-size: 15rem;
+    line-height: 200px;
+    font-family: "Oswald", sans-serif;
+    position: relative;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;  
+    animation: slide 6s linear infinite;
+    background-size: auto 400px;
+    background-position: left 0px; 
+    background-image: linear-gradient(to bottom,    
+      $mauve 0px, $mauve 100px,
+      black 100px,
+      $red 102px,$red 130px,   
+      black 130px,
+      $blue 132px, $blue 180px,
+      black 180px,
+      $yellow 182px, $yellow 200px,   
+      black 200px,
+      $mauve 202px, $mauve 240px,   
+      black 240px,
+      $red 242px, $red 300px,  
+      black 300px,
+      $blue 302px, $blue 350px,  
+      black 350px,
+      $yellow 352px, $yellow 398px,
+      black 399px, black 400px
+    );
+     &:nth-child(odd) {
+      top: 30px;
+      background-image: linear-gradient(to bottom,     $mauve 0px, $mauve 70px,
+      black 70px,
+      $red 72px,$red 100px,   
+      black 100px,
+      $blue 102px, $blue 150px,
+      black 150px,
+      $yellow 152px, $yellow 170px,   
+      black 170px,
+      $mauve 172px, $mauve 210px,   
+      black 210px,
+      $red 212px, $red 270px,  
+      black 270px,
+      $blue 272px, $blue 320px,  
+      black 320px,
+      $yellow 322px, $yellow 370px
+    );
+    }
+  }
+  
+  @keyframes slide {
+    100% {
+      background-position: left -400px;    
+    }  
+  }
+  
