@@ -38,23 +38,24 @@ class SavedDiaries extends Component {
       }} />
 
     }
-    const customRenderer = (tag, size, color) => (
-      <span key={tag.value}
-            style={{
-              animation: 'blinker 7s linear infinite',
-              animationDelay: `${Math.random() * 2}s`,
-              fontSize: `${size}em`,
-              // border: `2px solid ${color}`,
-              margin: '3px',
-              padding: '3px',
-              display: 'inline-block',
-               color: color,
-            }}>{tag.value}</span>
-    );
+    // const customRenderer = (tag, size, color) => (
+    //   <span key={tag.value}
+    //         style={{
+    //           animation: 'blinker 7s linear infinite',
+    //           animationDelay: `${Math.random() * 2}s`,
+    //           fontSize: `${size}em`,
+    //           // border: `2px solid ${color}`,
+    //           margin: '3px',
+    //           padding: '3px',
+    //           display: 'inline-block',
+    //            color: color,
+    //         }}>{tag.value}</span>
+    // );
     return (
       <div>
         < div className="container mt-4" id="wordCloud">
-        <TagCloud className="text-center" id="tagCloud" minSize={30}
+        <TagCloud 
+        className="text-center" id="tagCloud" minSize={30}
               maxSize={60}
               tags={data}
               onClick={(tag) => this.handleClick(tag)} 

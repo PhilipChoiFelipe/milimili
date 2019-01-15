@@ -20,8 +20,8 @@ class WriteDiary extends Component {
       alert("제목/내용을 써주세요!")
     } else if(this.state.title.length > 20){
       alert("제목은 20자 이내로 쓰셔야합니다")
-    } else if(this.state.textValue.length > 500){
-      alert("글은 500자 이내로 써주세요")
+    } else if(this.state.textValue.length > 2000){
+      alert("글은 2000자 이내로 써주세요")
     }else {
       if (window.confirm('내 일기장에 저장하시겠습니까?')) {
         this.props.textUpdate(this.state.textValue, date.getMilliseconds(), this.state.title);
@@ -29,6 +29,7 @@ class WriteDiary extends Component {
       }
     }
   }
+
   handleChange = (event) => {
     this.setState({ textValue: event.target.value });
   }
@@ -39,6 +40,7 @@ class WriteDiary extends Component {
 
   render() {
     return (
+      <div>
       <div className="container text-center">
         <form className="myForm mt-5" onSubmit={this.handleSubmit}>
           <input value= {this.state.title} className="mb-3 p-2" size="71" id="title" type="text" placeholder="제목" onChange={this.titleChange}></input>
@@ -49,7 +51,17 @@ class WriteDiary extends Component {
             제출
             </button>
         </form>
-      </div>);
+        </div>
+        <div id="footer" className="mt-5 pb-2">
+            {/* <Notification notify={this.notifyUser}/> */}
+            <p className="lead mt-1 ml-3" style={{fontSize: "0.9em", color:"#B09273"}}>
+            Copyright (c) 최민석 All Right Reserved.
+            <br/>
+              contact: mschoi16@uw.edu
+            </p>
+          </div>
+          </div>
+     );
   }
 }
 

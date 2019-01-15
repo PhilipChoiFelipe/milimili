@@ -14,10 +14,10 @@ import ChosenDiary from './ChosenDiary'
 import SavedDiaries from './SavedDiaries'
 import WriteDiary from './WriteDiary'
 import OthersDiaries from './OthersDiaries'
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import '@firebase/messaging'
 
 // import { forEach } from '@firebase/util';
-
 
 class App extends Component {
   constructor(props) {
@@ -27,10 +27,21 @@ class App extends Component {
       sharedDiaries: [],
       clickedDiary: '',
       clickedLogIn: false,
+      notification: []
     }
   }
-  notifyUser = (commented) => {
-    
+
+  notifyUser = (comment, diary) => {
+    let ref = firebase.database().ref(`diaries/${diary.userID}`)
+    let newData = {
+      commenterID: comment.userID, writerID: diary.userID, commentText: comment.text, diaryKey: diary.key, title:diary.value
+    }
+    ref.child('notification').child(diary.key).push(newData)
+    ref.child('notification').on("value", (snapshot) => {
+      console.log("commented!:")
+      console.log(snapshot.val())
+    })
+
   }
 
   textUpdate = (diary, date, title) => {
@@ -106,6 +117,14 @@ class App extends Component {
           user: firebaseUser,
         })
         //setting state for my private diaries
+        // let messaging = firebase.messaging();
+        // messaging.usePublicVapidKey("AAAAydXUZE0:APA91bFX8qMLjnDWsSaNVE7JvoSl5FFmPWVSseYFilJoFCbRPN_PYRF4tYd1nmTBVO9kLkgUOOz3dQ1CHTo0EFGgnVLIPaKETfHcSbmenv8k_GWttpjoTVoF684HnSrmeiP3dqsQT_JD");
+        // messaging.requestPermission()
+        //   .then(function () {
+        //     console.log("havePermission")
+        //   })
+
+
         firebase.database().ref(`diaries/${this.state.user.uid}`).on("value", (snapshot) => {
           // console.log("posted");
           // console.log(snapshot.val())
@@ -114,16 +133,22 @@ class App extends Component {
             let diariesKeys = Object.keys(snapshot.val())
             // console.log(chirpsKeys);
             console.log(snapshot.val())
+            
             diariesObject = diariesKeys.map((key) => {
-              let diariesObj = snapshot.val()[key];
-              console.log(key)
+              let diariesObj={}
+              if(key!== 'notification'){
+              diariesObj = snapshot.val()[key];
+              // console.log(key)
               diariesObj.id = key;
+              }
               return diariesObj;
             })
           }
+
           console.log("Component Did Mount:")
           console.log(diariesObject)
           this.setState({ diaries: diariesObject })
+
         })
         //setting state for my shared diaries
 
@@ -141,6 +166,21 @@ class App extends Component {
             this.setState({ sharedDiaries: sharedObject })
           }
         })
+
+        let notifyObject = [];
+        firebase.database().ref(`diaries/${this.state.user.uid}`).child('notification').on("value",(snapshot)=>{
+          if(snapshot.exists()){
+          let notifyKeys = Object.keys(snapshot.val())
+          console.log(notifyKeys)
+          notifyObject = notifyKeys.map((key) => {
+            let notifyObj = snapshot.val()[key];
+            notifyObj.id = key;
+            return notifyObj;
+          })
+        }
+          this.setState({notification: notifyObject})
+        })
+        console.log(notifyObject)
 
       } else {
         this.setState({ user: null })
@@ -235,6 +275,12 @@ class App extends Component {
       content = (
         <div>
           <header className="App-header">
+            <div className="menuBar mt-2 ml-2">
+              <Notification notification={this.state.notification}  currentUser={this.state.user}/>
+              {this.state.user && <button id="logOutButton" className="btn-lg btn" onClick={() => this.handleSignOut()}>
+                <i class="fas fa-sign-out-alt"></i>
+              </button>}
+            </div>
             <h1 className="text-center" id="title"><Link to="/" id="titleLink">
               MiliMili
             </Link>
@@ -243,9 +289,9 @@ class App extends Component {
               {/* <button className="btn ml" onClick={this.clickLogIn}>
                   로그인
             </button> */}
-              {this.state.user && <button className="btn" onClick={() => this.handleSignOut()}>
+              {/* {this.state.user && <button className="btn" onClick={() => this.handleSignOut()}>
                 로그아웃
-            </button>}
+            </button>} */}
             </div>
           </header>
 
@@ -264,18 +310,20 @@ class App extends Component {
                   </div>
                 </Navbar>
                 <Switch>
-                  <Route exact path='/' render={() => <WriteDiary textUpdate={this.textUpdate} />} />
+                  <Route exact path='/' render={() => <WriteDiary textUpdate={this.textUpdate}/>} />
                   {/* <IndexRoute render={() => <SavedDiaries diaries={this.state.diaries} clickUpdate={this.clickUpdate} />}/> */}
                   <Route path='/SavedDiaries' render={() => <SavedDiaries diaries={this.state.diaries} clickUpdate={this.clickUpdate} />} />
                   <Route path='/others' render={() => <OthersDiaries clickUpdate={this.clickUpdate} sharedDiaries={this.state.sharedDiaries} />} />
                   <Route path='/ChosenDiary/:keySeconds' render={() => <ChosenDiary diary={this.state.clickedDiary} currentUser={this.state.user}
-                    removeDiary={this.removeDiary} shareDiary={this.shareDiary} removeMySharedDiary={this.removeMySharedDiary} />} />
-                  <Redirect to='/' />
+                    removeDiary={this.removeDiary} shareDiary={this.shareDiary} removeMySharedDiary={this.removeMySharedDiary}
+                    notifyUser={this.notifyUser} />} />
+                  {/* <Redirect to='/' /> */}
                 </Switch>
               </div>
             </HashRouter>
           </main>
         </div>
+
       );
 
     }
@@ -285,7 +333,7 @@ class App extends Component {
           <p className="alert alert-danger">{this.state.errorMessage}</p>
         }
         {content}
-        {<Notification notify = {this.notifyUser}/>}
+
       </div>
 
     );
@@ -294,36 +342,51 @@ class App extends Component {
 
 
 class Notification extends Component {
-  createNotification = (type) => {
-    return () => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      notification: [],
+      redirect: false,
+      parameter: ''
+    }
+  }
+  handleNotification = () => {
+    console.log("Clicked")
+    for(let i = 0; i<this.props.notification.length; i++){
+      this.createNotification(this.props.notification[i])
+    }
+  }
+  clickedNotification(parameter){
+    this.setState({redirect: true, parameter: parameter.diaryKey})
+    // console.log(parameter.diaryKey)
+  }
+  createNotification(notification) {
+    console.log("clicked")
+    console.log(notification)
+    if( _.size(notification) > 1){ 
       // eslint-disable-next-line default-case
-      switch (type) {
-        case 'info':
-          NotificationManager.info('Info message');
-          break;
-        case 'success':
-          NotificationManager.success('Success message', 'Title here');
-          break;
-        case 'warning':
-          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-          break;
-        case 'error':
-          NotificationManager.error('Error message', 'Click me!', 5000, () => {
-            alert('callback');
-          });
-          break;
-      }
-    };
+      NotificationManager.info(`"${notification[Object.keys(notification)[0]].title}"`,`${_.size(notification) }개의 댓글이 달렸습니다!`, 3000,
+      ()=>{ return this.clickedNotification(notification[Object.keys(notification)[0]])});
+    }else{
+      NotificationManager.info(`댓글이 달렸습니다!`);
+    }
   };
- 
+
   render() {
+    if(this.state.redirect){
+      return <Redirect push to={{
+        pathname: '/ChosenDiary/' + this.state.parameter
+      }} />    }
+      console.log("Notification Object:")
+      console.log(this.props.notification)
     return (
-      <div>
-        {/* <button className='btn btn-info'
-          onClick={this.createNotification('info')}>Info
-        </button>
-        <hr/>
-        <button className='btn btn-success'
+      <div className="containerNotification">
+        <div className="ml-2 mt-2" >
+          <button id="notifyButton" style={{ borderRadius: 200 }} className='btn-lg btn'
+            onClick={this.handleNotification}><i className="fas fa-comment"> <span id="num">{this.props.notification.length}</span> </i>
+          </button>
+          {/* <hr/> */}
+          {/* <button className='btn btn-success'
           onClick={this.createNotification('success')}>Success
         </button>
         <hr/>
@@ -334,8 +397,9 @@ class Notification extends Component {
         <button className='btn btn-danger'
           onClick={this.createNotification('error')}>Error
         </button> */}
- 
-        <NotificationContainer/>
+
+          <NotificationContainer />
+        </div>
       </div>
     );
   }

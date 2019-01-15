@@ -29,7 +29,7 @@ class OthersDiaries extends Component {
     //     <i className="fa fa-spinner fa-spin fa-3x" aria-label="Connecting..."></i>
     //   </div>);
     // }
-    console.log(this.props.sharedDiares)
+    // console.log(this.props.sharedDiares)
 
     if (this.state.redirect) {
       // return <Redirect push to={'/ChosenDiary/' + this.state.clickedDiary.key}/>
@@ -38,7 +38,7 @@ class OthersDiaries extends Component {
       }} />
     }
     let data = [];
-    console.log(this.props.sharedDiaries)
+    // console.log(this.props.sharedDiaries)
     if (typeof (this.props.sharedDiaries) !== 'undefined') {
       data = this.props.sharedDiaries.map((diary) => {
         return ({
@@ -48,7 +48,7 @@ class OthersDiaries extends Component {
       })
     }
     // console.log("sharedDiares in Component");
-    console.log(data);
+    // console.log(data);
     // const customRenderer = (tag, size, color) => (
     //   <span key={tag.value}
     //     style={{

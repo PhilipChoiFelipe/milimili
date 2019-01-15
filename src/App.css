@@ -7,13 +7,60 @@
   background-color: #E6D9C1;
 }
 
+.menuBar{
+  position: fixed;
+  display: inline;
+  background-color: #F5CB86;
+  border-radius: 50px;
+}
+.containerNotification{
+  display: inline-block;
+}
+#notifyButton{
+  color:#F7FBD5;
+}
+#logOutButton{
+
+}
+.fas{
+  font-size: 1.4em;
+
+}
+
+#num {
+  font-family: "Oswald", sans-serif;
+  position: relative;
+  right: 12px;
+  top: 12px;
+  color:black;
+  font-size:0.9rem;
+}
+
 #websiteTitle{
   margin-top: 15%;
+  -webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-o-user-select: none;
+user-select: none;
 }
 /* The typing effect */
+#footer{
+  background-color: #F5CB86;
+}
 
+#commentBox{
+  white-space: pre-line;
+
+}
 #diaryTitle{
-  font-size:1.5rem;
+  font-size: 2.4rem;
+}
+
+#diaryText{
+  font-size:1.2rem;
+  white-space: pre-line;
+
 }
 
 #oneCommentIn{

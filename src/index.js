@@ -21,7 +21,15 @@ import 'firebase/database';
     messagingSenderId: "866875892813"
   };
   firebase.initializeApp(config);
-
+  // let messaging = firebase.messaging();
+  // messaging.usePublicVapidKey("BBT1ZkmKPmdoAqXV7RGZymqqZthqGQUsYXlIdzmOQ0nGGBlb6D2DqBG_V8ygsS8Nbjc-GR_BMvrR4RVcJXNF9tw")
+  // messaging.requestPermission()
+  //   .then(function () {
+  //     console.log("have permission")
+  //   })
+  //   .catch(function (err) {
+  //     console.log("nope")
+  //   })
 
 ReactDOM.render(<HashRouter><App /></HashRouter>, document.getElementById('root'));
 
