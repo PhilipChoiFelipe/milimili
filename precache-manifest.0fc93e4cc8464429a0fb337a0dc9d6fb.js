@@ -20,23 +20,23 @@ self.__precacheManifest = [
     "url": "/milimili/static/js/runtime~main.21e96a25.js"
   },
   {
-    "revision": "4f4249c56b459b9b5608",
-    "url": "/milimili/static/js/main.4f4249c5.chunk.js"
+    "revision": "4ab2b56175a57d34b8fa",
+    "url": "/milimili/static/js/main.4ab2b561.chunk.js"
   },
   {
-    "revision": "809be0b7c102a6a9ff55",
-    "url": "/milimili/static/js/1.809be0b7.chunk.js"
+    "revision": "81dae1e160c2e2e5e8b7",
+    "url": "/milimili/static/js/1.81dae1e1.chunk.js"
   },
   {
-    "revision": "4f4249c56b459b9b5608",
+    "revision": "4ab2b56175a57d34b8fa",
     "url": "/milimili/static/css/main.90cf3d5c.chunk.css"
   },
   {
-    "revision": "809be0b7c102a6a9ff55",
+    "revision": "81dae1e160c2e2e5e8b7",
     "url": "/milimili/static/css/1.2585bd9b.chunk.css"
   },
   {
-    "revision": "d7e7ef9a93de2e3d178f9a1cea676f4f",
+    "revision": "3499b2e84a5703c4c9a9467cda22d1e5",
     "url": "/milimili/index.html"
   }
 ];
