@@ -7,6 +7,16 @@
   background-color: #E6D9C1;
 }
 
+#commentListBox{
+  /* background-color:; */
+}
+
+#commentTextArea{
+  width:"75%";
+}
+
+
+
 .menuBar{
   position: fixed;
   display: inline;
@@ -147,4 +157,32 @@ html{
   border-radius: 10px;
   border-style: groove;
 border-color:pink;
+} */
+@media (max-width: 768px)
+{
+  #commentContainerOwn{
+    margin-left: 0%;
+    width: 100%;
+  }
+  
+  #commentContainerOther{
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  #commentTextArea{
+    width:100%;
+  }
+}
+
+/* @media (max-width: 1200px) {
+  #commentContainerOwn{
+    margin-left: 40%;
+    width: 40%;
+  }
+  
+  #commentContainerOther{
+    margin-left: 10%;
+    width: 40%;
+  }
 } */

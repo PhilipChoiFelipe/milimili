@@ -31,17 +31,25 @@ class CommentList extends Component {
     }
 
     componentDidMount() {
-        firebase.database().ref(`shared/diaries/`).child(this.props.diary.key).child("comments").on("value", (snapshot) => {
+        // console.log(this.props.currentUser.uid)
+        // console.log(this.props.keyValue)
+        // console.log(this.props.diary)
+
+        firebase.database().ref(`shared/diaries/`).child(this.props.keyValue).child("comments").on("value", (snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ comments: snapshot.val() })
             }
         })
+    
     }
 
-    componentWillMount() {
-        firebase.database().ref('unregister').off();
-    }
+    // componentWillMount() {
+    //     firebase.database().ref('unregister').off();
+    // }
+
     render() {
+        // console.log(this.props.diary)
+
         // let refComment = firebase.database().ref(`shared/diaries/${this.props.diary.userID}-${this.props.diary.date}/comments`)
         // console.log(typeof(refComment))
         let content = '';
@@ -60,9 +68,12 @@ class CommentList extends Component {
             })
         }
         return (
-            <div>
+            // style={{width:"85%", maxHeight:"600px", overflow:"scroll"}}
+            // <div className="container py-3" style={{backgroundColor: "#FBF8D5", width:"70%"}}>
+            <div id="commentListBox"className="container-fluid mt-5" style={{ width:"85%", maxHeight:"600px", overflow:"auto"}}>
                 {content}
-            </div>);
+            </div>
+            );
     }
 }
 
@@ -81,22 +92,23 @@ class SingleComment extends Component {
         //if comment's commenter's id is different that writer's id
         let button = <div></div>;
         if (this.props.comment.userID === this.props.currentUser.uid) {
-            button = (<div className="col-1" id="removeComment">
+            button = (<div className="col-12 col-sm-12" id="removeComment">
                 <button id="oneCommentIn" onClick={this.removeComment} className="btn">
                     x
         </button>
             </div>)
         }
+        //other's comment
         if (this.props.comment.userID !== this.props.diary.userID) {
             content = (
                 <div className="container mb-3" id="commentContainerOther">
                     <div className="row p-3 py-2 border" id="oneComment" style={{ backgroundColor: this.props.comment.color }}>
-                        <div className="col-lg-2 col-md-3">
+                        <div className="col-lg-2 col-md-3 col-sm-12">
                             <p id="oneCommentIn">
                                 {this.props.comment.displayName}
                             </p>
                         </div>
-                        <div className="col pl-4 pl-lg-1 align-center">
+                        <div className="col ml-2 pl-4 pl-lg-1 align-center">
                             {/* <span className="time"><Time value={comment.time} relative/></span> */}
                             {comment.text}
                         </div>

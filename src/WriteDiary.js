@@ -48,16 +48,16 @@ class WriteDiary extends Component {
             <textarea value={this.state.textValue} className="p-2" id="textarea" type="text" rows="20" cols="70" placeholder="오늘하루는 어떠셨나요?" onChange={this.handleChange}></textarea>
           </div>
           <button type="submit" className="btn btn-warning btn-lg mt-3 mb-3">
-            제출
+            저장
             </button>
         </form>
         </div>
         <div id="footer" className="mt-5 pb-2">
             {/* <Notification notify={this.notifyUser}/> */}
             <p className="lead mt-1 ml-3" style={{fontSize: "0.9em", color:"#B09273"}}>
-            Copyright (c) 최민석 All Right Reserved.
+            Copyright (c) FELIPECHOI All Right Reserved.
             <br/>
-              contact: mschoi16@uw.edu
+              contact: min_0917@naver.com
             </p>
           </div>
           </div>

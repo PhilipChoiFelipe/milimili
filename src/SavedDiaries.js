@@ -15,14 +15,14 @@ class SavedDiaries extends Component {
   }
 
   handleClick(tag) {
-    console.log(tag.value)
-    this.props.clickUpdate(tag);
+    // console.log(tag.value)
+    // this.props.clickUpdate(tag);
     this.setState({ redirect: true, clickedDiary: tag })
   }
 
   render() {
-    console.log("passedDown diaries to saved")
-    console.log(this.props.diaries)
+    // console.log("passedDown diaries to saved")
+    // console.log(this.props.diaries)
     let data = this.props.diaries.map((diary) => {
       // return <OneSavedDiary key={diary.date} oneDiary={diary} />
       return ({ value: diary.title, count: Math.round((Math.random() * 20)), diary: diary.diary, date: diary.date, key: diary.id, id: diary.id, userID: diary.userID});
@@ -34,7 +34,7 @@ class SavedDiaries extends Component {
     if (this.state.redirect) {
       // return <Redirect push to={'/ChosenDiary/' + this.state.clickedDiary.key}/>
       return <Redirect push to={{
-        pathname: '/ChosenDiary/' + this.state.clickedDiary.id
+        pathname: '/OwnChosenDiary/' + this.state.clickedDiary.id
       }} />
 
     }

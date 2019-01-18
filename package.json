@@ -1,12 +1,16 @@
 {
   "name": "milistory",
+  "homepage": "https://PhilipChoiFelipe.github.io/milimili",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
     "bootstrap": "^4.2.1",
     "bootstrap-less": "^3.3.8",
+    "dotenv": "^6.2.0",
     "firebase": "^5.7.2",
+    "firebase-tools": "^6.3.0",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.11",
     "mdbootstrap": "^4.6.0",
     "node-sass": "^4.11.0",
@@ -24,6 +28,8 @@
     "reactstrap": "^7.0.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

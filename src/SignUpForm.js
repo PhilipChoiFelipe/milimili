@@ -12,7 +12,7 @@ class SignUpForm extends Component {
       'password': undefined,
       // anonymous: false,
       dropdownOpen: false,
-      handle: '신분을 정해주세요',
+      handle: 'select',
       signUpmodal: false,
       signInmodal: false
     };
@@ -34,7 +34,7 @@ class SignUpForm extends Component {
   // signUp button
   handleSignUp(event) {
     event.preventDefault();
-    if (this.state.handle === '신분을 정해주세요') {
+    if (this.state.handle === 'select') {
       alert("신분을 정해주세요!")
     } else {
       this.props.signUpCallback(this.state.email, this.state.password, this.state.handle);
@@ -48,7 +48,7 @@ class SignUpForm extends Component {
   }
 
   handleType(event) {
-    console.log(event.currentTarget.textContent)
+    // console.log(event.currentTarget.textContent)
     this.setState({ handle: event.currentTarget.textContent });
   }
 
@@ -154,7 +154,7 @@ class SignUpForm extends Component {
                       <DropdownItem onClick={(e) => this.handleType(e)}>미필</DropdownItem>
                       {/* <DropdownItem disabled>Action (disabled)</DropdownItem>
               <DropdownItem divider /> */}
-                      <DropdownItem onClick={(e) => this.handleType(e)}>군필</DropdownItem>
+                      <DropdownItem onClick={(e) => this.handleType(e)}>현역</DropdownItem>
                       <DropdownItem onClick={(e) => this.handleType(e)}>전역</DropdownItem>
                       <DropdownItem onClick={(e) => this.handleType(e)}>others</DropdownItem>
                     </DropdownMenu>

@@ -20,7 +20,7 @@ class OthersDiaries extends Component {
   // }
 
   handleClick(tag) {
-    this.props.clickUpdate(tag);
+    // this.props.clickUpdate(tag);
     this.setState({ redirect: true, clickedDiary: tag })
   }
   render() {
@@ -33,20 +33,21 @@ class OthersDiaries extends Component {
 
     if (this.state.redirect) {
       // return <Redirect push to={'/ChosenDiary/' + this.state.clickedDiary.key}/>
-      return <Redirect push to={{
-        pathname: '/ChosenDiary/' + this.state.clickedDiary.key
-      }} />
+      return <Redirect push to={
+         '/ChosenDiary/' + this.state.clickedDiary.key
+      } />
     }
     let data = [];
     // console.log(this.props.sharedDiaries)
     if (typeof (this.props.sharedDiaries) !== 'undefined') {
       data = this.props.sharedDiaries.map((diary) => {
         return ({
-          value: diary.value, count: Math.random() * 20, diary: diary.diary, date: diary.date,
-          key: diary.id, userID: diary.userID, shared: true, id: diary.id
+          value: diary.title, count: Math.random() * 20, diary: diary.diary, date: diary.date,
+          key: diary.key, userID: diary.userID, shared: true, id: diary.key
         });
       })
     }
+    // console.log(data)
     // console.log("sharedDiares in Component");
     // console.log(data);
     // const customRenderer = (tag, size, color) => (
