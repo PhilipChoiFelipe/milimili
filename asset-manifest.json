@@ -1,16 +1,16 @@
 {
   "main.css": "/milimili/static/css/main.90cf3d5c.chunk.css",
-  "main.js": "/milimili/static/js/main.4ab2b561.chunk.js",
-  "main.js.map": "/milimili/static/js/main.4ab2b561.chunk.js.map",
+  "main.js": "/milimili/static/js/main.2dc53f71.chunk.js",
+  "main.js.map": "/milimili/static/js/main.2dc53f71.chunk.js.map",
   "static/css/1.2585bd9b.chunk.css": "/milimili/static/css/1.2585bd9b.chunk.css",
-  "static/js/1.81dae1e1.chunk.js": "/milimili/static/js/1.81dae1e1.chunk.js",
-  "static/js/1.81dae1e1.chunk.js.map": "/milimili/static/js/1.81dae1e1.chunk.js.map",
+  "static/js/1.fb89a332.chunk.js": "/milimili/static/js/1.fb89a332.chunk.js",
+  "static/js/1.fb89a332.chunk.js.map": "/milimili/static/js/1.fb89a332.chunk.js.map",
   "runtime~main.js": "/milimili/static/js/runtime~main.21e96a25.js",
   "runtime~main.js.map": "/milimili/static/js/runtime~main.21e96a25.js.map",
   "static/media/notifications.css": "/milimili/static/media/notification.651771e1.woff",
   "static/css/main.90cf3d5c.chunk.css.map": "/milimili/static/css/main.90cf3d5c.chunk.css.map",
   "static/css/1.2585bd9b.chunk.css.map": "/milimili/static/css/1.2585bd9b.chunk.css.map",
   "index.html": "/milimili/index.html",
-  "precache-manifest.0fc93e4cc8464429a0fb337a0dc9d6fb.js": "/milimili/precache-manifest.0fc93e4cc8464429a0fb337a0dc9d6fb.js",
+  "precache-manifest.6e73f94c905d7387a64506fc3ea55096.js": "/milimili/precache-manifest.6e73f94c905d7387a64506fc3ea55096.js",
   "service-worker.js": "/milimili/service-worker.js"
 }
