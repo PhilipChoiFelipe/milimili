@@ -18,7 +18,8 @@ class OwnChosenDiary extends Component {
     super(props);
     this.state = {
       redirect: false,
-      diary: ''
+      diary: '',
+      // exists: false
     }
   }
 
@@ -41,13 +42,22 @@ class OwnChosenDiary extends Component {
   }
 
   componentDidMount(){
-    
     let ref = firebase.database().ref(`/diaries`).child(this.props.currentUser.uid).child(this.props.match.params.keySeconds)
+    // console.log((ref))
+    // ref.on("value", (snapshot) => {
+    //   if(snapshot.exists()){
+    //     this.setState({exists: true})
+    //   }
+    // })
+    // if(this.state.exists){
     ref.child("key").on("value", (snapshot) => {
         if(!snapshot.exists()){
             ref.child("key").set(this.props.match.params.keySeconds)
+            // console.log(snapshot.val())
         }
     })
+  // }
+  
     ref.on("value", (snapshot) => {
       // console.log(snapshot.val())
       this.setState({diary: snapshot.val()})
@@ -59,6 +69,7 @@ class OwnChosenDiary extends Component {
     // console.log(this.state.diary)
     // console.log(this.props.match.params.keySeconds);
     // console.log();
+
     let content = <div></div>;
       content = (
         <div className="text-center">

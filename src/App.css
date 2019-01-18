@@ -12,7 +12,7 @@
 }
 
 #commentTextArea{
-  width:"75%";
+  width:"75%%";
 }
 
 
@@ -107,7 +107,8 @@ html{
   resize: none;
   border-radius: 2px;
   border: none;
-  display:inline;
+  width: 53%;
+  /* display:inline; */
 }
 
 #title{
@@ -159,7 +160,11 @@ html{
 border-color:pink;
 } */
 @media (max-width: 768px)
+
 {
+  #textarea{
+    /* width: 30%; */
+  }
   #commentContainerOwn{
     margin-left: 0%;
     width: 100%;
@@ -172,6 +177,14 @@ border-color:pink;
 
   #commentTextArea{
     width:100%;
+  }
+}
+
+@media (max-width: 800px)
+
+{
+  #textarea{
+    width: 90%;
   }
 }
 
