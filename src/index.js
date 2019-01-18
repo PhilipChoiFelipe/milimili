@@ -29,7 +29,6 @@ import 'firebase/database';
   //   .catch(function (err) {
   //     console.log("nope")
   //   })
-  console.log(process.env.API_KEY)
   firebase.initializeApp(config);
 
 ReactDOM.render(<HashRouter><App /></HashRouter>, document.getElementById('root'));
