@@ -1,4 +1,3 @@
-### Developed full-stack mobile application that helps users to get motivated on their pullup exercise.
-1. Designed mobile client-side to record and visualize client data with React Native
-2. Created server with authenticated API endpoints with ExpressJS
-3. Designed NoSql database for clients’ accounts and their exercise data with RealmDB
+### MiliMili
+Created Shareable diary platform for soldiers to share their tough days. People can post their story and others can comment. Users can get notification whenever other comments!
+TechStack: ReactJS - Firebase
